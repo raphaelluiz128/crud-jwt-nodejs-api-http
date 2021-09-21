@@ -4,7 +4,8 @@
   "description": "Api with users and adress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "swagger-autogen": "node ./swagger.js"
   },
   "keywords": [
     "node",
@@ -20,6 +21,10 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "swagger-autogen": "^2.11.2"
+  },
+  "devDependencies": {
+    "jest": "^27.2.1"
   }
 }
