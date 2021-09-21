@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
+const middleware_login = require('./middleware/login');
 
 router.get('/',(req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou get address"})
@@ -20,8 +21,7 @@ router.get('/:id_address',(req, res, next) => {
         mensagem : "ok, funcionou get address"})
 });
 
-router.post('/',(req, res, next) => {
-    console.log('post adrees')
+router.post('/', middleware_login, (req, res, next) => {
     
     mysql.getConnection((error, connection) => 
     {
@@ -46,11 +46,11 @@ router.post('/',(req, res, next) => {
     })
 });
 
-router.put('/',(req, res, next) => {
+router.put('/:id_address', middleware_login,(req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou put address"})
 });
 
-router.delete('/',(req, res, next) => {
+router.delete('/:id_address', middleware_login, (req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou delete address"})
 });
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('../mysql').pool;
 const jwt =  require('jsonwebtoken');
+const middleware_login = require('./middleware/login');
 
 router.get('/',(req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou get users"})
@@ -41,7 +42,6 @@ router.post('/login',(req, res, next) => {
 });
 
 router.post('/',(req, res, next) => {
-    console.log('post user')
     
     mysql.getConnection((error, connection) => 
     {
@@ -64,11 +64,11 @@ router.post('/',(req, res, next) => {
     })
 });
 
-router.put('/',(req, res, next) => {
+router.put('/:id_user', middleware_login,(req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou put users"})
 });
 
-router.delete('/',(req, res, next) => {
+router.delete('/:id_user', middleware_login,(req, res, next) => {
     res.status(200).send({ mensagem : "ok, funcionou delete users"})
 });
 
