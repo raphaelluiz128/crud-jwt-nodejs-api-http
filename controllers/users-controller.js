@@ -39,6 +39,7 @@ exports.getUser = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
+    
     mysql.getConnection((error, connection) => 
     {
         if(error) {

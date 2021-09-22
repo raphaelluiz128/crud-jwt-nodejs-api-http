@@ -6,6 +6,7 @@ const userRoutes = require('./routes/users');
 const addressRoutes = require('./routes/address');
 
 app.use(morgan('dev'));
+app.use(express.json())
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json());
 
